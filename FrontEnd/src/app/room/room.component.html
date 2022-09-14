@@ -1,0 +1,18 @@
+<div class="room-table">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">Game ID</th>
+      <th scope="col">Game Status</th>
+      <th scope="col">Creator</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let room of rooms">
+      <th scope="row">{{room.gameId}}</th>
+      <td>{{room.gameStatus}}</td>
+      <td>{{room.player1}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

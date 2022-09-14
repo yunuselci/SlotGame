@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<div class="topnav">
+  <h2>Loan: {{ game.loan ?? 0}}$</h2>
+  <h2>Withdraw: {{ game.withdraw ?? 0}}$</h2>
+  <h2>User Credit: {{ game.userCredits ?? 0}}$ </h2>
+  <h2>Logged User: {{ game.username }}</h2>
+  <div class="loan-form">
+    <form [formGroup]="form" (ngSubmit)="submitForm('loan')">
+      <button [disabled]="button.disabled" style="margin-top: 4px" class="btn btn-primary">Loan</button>
+    </form>
+  </div>
+  <div class="withdraw-form">
+    <form [formGroup]="form" (ngSubmit)="submitForm('cashout')">
+      <button [disabled]="button.disabled" style="margin-left: 10px; margin-top: 4px" class="btn btn-primary">Withdraw
+      </button>
+    </form>
+  </div>
+</div>
+<app-chat></app-chat>
+<div class="slots">
+  <ng-container *ngFor="let slot of game.slots">
+    <div class="slots-item" [ngSwitch]="slot">
+      <div *ngSwitchCase="'cherry'"><img src="../assets/images/cherry.png" alt="cherry_image"></div>
+      <div *ngSwitchCase="'lemon'"><img src="../assets/images/lemon.png" alt="lemon"></div>
+      <div *ngSwitchCase="'waterLemon'"><img src="../assets/images/watermelon.png" alt="watermelon_image"></div>
+      <div *ngSwitchCase="'orange'"><img src="../assets/images/orange.png" alt="orange_image"></div>
+    </div>
+  </ng-container>
+</div>
+<div class="game-form">
+  <form [formGroup]="form" (ngSubmit)="submitForm('play')">
+    <button [disabled]="button.disabled" style="margin-left: 2px" class="btn btn-warning">Roll it</button>
+  </form>
+</div>
+<div *ngIf="!game.username">
+  <p class="text-center text-muted mt-5 mb-0">Don't have an account?
+    <a routerLink="/register" class="fw-bold text-body"><u>Register here</u></a></p>
+</div>
+
+</body>
+</html>

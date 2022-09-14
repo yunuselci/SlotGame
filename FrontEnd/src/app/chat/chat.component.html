@@ -1,0 +1,25 @@
+<div id="chat-page" class="hidden">
+  <div class="chat-container">
+    <div class="chat-header">
+      <h4>Global Chat Box</h4>
+    </div>
+    <div class="chat-messages">
+      <ul *ngIf="!!msgArray">
+        <li *ngFor="let msg of msgArray">
+          <span style="color: red">{{msg.sender}}:</span> {{msg.content}}
+        </li>
+      </ul>
+    </div>
+    <div class="chat-form">
+      <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <div class="form-group">
+          <div class="input-group clearfix">
+            <input type="text" formControlName="content" name="content" id="content" placeholder="Type a message..."
+                   autocomplete="off" class="form-control"/>
+            <button type="submit" id="btn" class="btn btn-primary">Send</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

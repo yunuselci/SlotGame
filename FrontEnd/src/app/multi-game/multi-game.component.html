@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+<div class="topnav">
+  <a href="/">Go To: Slot Game</a>
+</div>
+<div class="user-box">
+  <ng-container *ngIf="isPlayer2;else second"><h2>Playing With: {{game.player1}}</h2></ng-container>
+  <ng-template #second>
+    <ng-container *ngIf="!isPlayer2;else third"><h2>Playing With: {{game.player2}}</h2></ng-container>
+  </ng-template>
+  <ng-template #third><h2>Waiting for opponent..</h2></ng-template>
+</div>
+<app-chat></app-chat>
+<app-room></app-room>
+<div class="game-buttons">
+  <button [disabled]="createButtons.disabled" type="button" class="btn btn-primary" (click)="createGame()">Create Game
+  </button>
+  <button [disabled]="createButtons.disabled" type="button" class="btn btn-primary" (click)="connectToRandom()">Connect
+    Random Game
+  </button>
+</div>
+<div class="connect-form">
+  <form [formGroup]="form" (ngSubmit)="connectGame()">
+    <label class="form-label">Game ID:</label>
+    <input type="text" formControlName="gameId" name="gameId" id="gameId" required
+           class="form-control form-control-sm"/>
+    <button class="btn btn-warning mt-2">Connect to To the Specific Game
+    </button>
+  </form>
+</div>
+<div class="game-container">
+  <div class="game-left">
+    <div class="symbols">
+      <button [disabled]="gameButtons.disabled" (click)="playTheGame(1)"
+              style="background: url(../../assets/images/Rock.png); height: 153px; width: 104px;">.
+      </button>
+      <button [disabled]="gameButtons.disabled" (click)="playTheGame(2)"
+              style="background: url(../../assets/images/Paper.png); height: 153px; width: 104px;">.
+      </button>
+      <button [disabled]="gameButtons.disabled" (click)="playTheGame(3)"
+              style="background: url(../../assets/images/Scissors.png); height: 153px; width: 104px;">.
+      </button>
+    </div>
+  </div>
+</div>
+<div class="result-box">
+  <h2>Winner is: {{play.winner}}</h2>
+</div>
+</body>
+</html>

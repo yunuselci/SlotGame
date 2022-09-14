@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  db:
+    image: "mysql"
+    container_name: "db"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    env_file:
+      - db.env
+
+  backend:
+    container_name: "backend"
+    build: ./BackEnd
+    ports:
+      - 8080:8080
+    env_file:
+      - backend.env
+    depends_on:
+      - db
+
+  frontend:
+    container_name: "frontend"
+    build: ./FrontEnd
+    volumes:
+      - angular_build:/app/dist/front-end
+    ports:
+      - 4200:80
+    depends_on:
+      - backend

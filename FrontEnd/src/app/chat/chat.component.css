@@ -1,0 +1,31 @@
+html, body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.chat-container {
+  max-height: 300px;
+  max-width: 300px;
+  height: 300px;
+  width: 300px;
+  border-style: solid;
+  border-color: dimgray;
+  border-width: 1px;
+  margin-top: 10px;
+  position: fixed;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.chat-messages ul, li {
+  max-height: 300px;
+  list-style: none;
+}
+
+.chat-header {
+  border-bottom: black solid 1px;
+}
+
+.input-group{
+  position: absolute;
+  bottom: 0;
+}
